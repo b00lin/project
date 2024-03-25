@@ -3,7 +3,6 @@
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Pages;
 
-
 /**
  * @var RouteCollection $routes
  */
