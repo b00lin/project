@@ -1,13 +1,18 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
+use App\Controllers\News; // Importing News class
 use App\Controllers\Pages;
 
 /**
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-// The second route does a GET request to the /pages and will map it to the /index method of the pages class.
+
+$routes->get('news', [News::class, 'index']);        
+$routes->get('news/new', [News::class, 'new']); 
+$routes->post('news', [News::class, 'create']); 
+$routes->get('news/(:segment)', [News::class, 'show']); 
+
 $routes->get('pages', [Pages::class, 'index']);
-// Third rule does a GET request using the segment placeholder. Passes to the view() method of the pages class.
 $routes->get('(:segment)', [Pages::class, 'view']);
