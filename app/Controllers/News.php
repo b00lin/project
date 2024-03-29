@@ -19,7 +19,7 @@ class News extends BaseController
         return view('templates/header', $data)
         . view('news/index')
         . view('templates/footer');
-    }
+        }
 
     public function show($slug = null)
     {
@@ -42,12 +42,10 @@ class News extends BaseController
     {
         helper('form');
 
-        return view('templates/header', ['title' => 'Create a news item'])
-            . view('news/create')
-            . view('templates/footer');
+        return view('news/create', ['title' => 'Create a news item']);
     }
 
-    public function create()
+       public function create()
     {
         helper('form');
 
