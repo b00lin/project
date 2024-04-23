@@ -10,6 +10,10 @@ body {
   color: #444444;
 }
 
+.news {
+  background-color: whitesmoke;
+}
+
 a {
   color: #009961;
   text-decoration: none;
@@ -394,6 +398,61 @@ Hopefully it's fine? ¯\_(ツ)_/¯
     margin-bottom: 30px;
   }
 }
+
+/*--------------------------------------------------------------
+# Hero News Section
+--------------------------------------------------------------*/
+#hero_news {
+  width: 100%;
+  height: 100vh;
+  background: url("../imgs/newspaper.jpg") top center;
+  background-size: cover;
+  position: relative;
+}
+#hero_news:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+#hero_news .container {
+  padding-top: 72px;
+  position: relative;
+  text-align: center;
+}
+#hero_news h1 {
+  margin: 0 0 10px 0;
+  font-size: 57px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+}
+#hero_news h2 {
+  color: #eee;
+  margin-bottom: 40px;
+  font-size: 20px;
+}
+
+@media (min-width: 1024px) {
+  #hero_news {
+    background-attachment: fixed;
+  }
+}
+@media (max-width: 768px) {
+  #hero_news h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero_news h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Sections General
