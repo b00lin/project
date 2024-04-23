@@ -5,8 +5,17 @@
     async defer>
   </script>
   <script>assets/js/main.js</script>
+  <!-- CSS - Minor change because it wouldn't be worth reuploading an entire CSS file for this.-->
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #fff; /* Adding color for better readability */
+    }
+  </style>
 </head>
 <body>
+<main id="main">
+  <section id="services" class="services">
   <div class="container">
     <br><br>
     <h1 class="text-center">Find a Lawyer/Solicitor!</h1>
@@ -26,6 +35,8 @@
   </div>
   <br><br>
   <table class="table table-bordered table-striped" id="places"></table>
+  </section><!-- End Services Section -->
+  </main><!-- End #main -->
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <!-- JS File -->
