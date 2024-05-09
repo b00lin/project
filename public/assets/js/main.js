@@ -198,19 +198,37 @@
     }
   }
 
-  function createMarker(place) {
-    console.log(place)
-    var table =document.getElementById("places");
-    var row = table.insertRow();
-    var cell1 = row.insertCell(0);
-    cell1.innerHTML = place.name;
-    if (place.photos) {
-      let photoUrl = place.photos[0].getUrl();
-      let cell2 = row.insertCell(1);
-      cell2.innerHTML = `<img width="300" height="300" src="${photoUrl}"/>`;
+function createMarker(place) {
+  var table = document.getElementById("places");
+  var row = table.insertRow();
+  var cell1 = row.insertCell(0);
+  cell1.innerHTML = "<strong>Name:</strong> " + place.name + "<br><strong>Address:</strong> " + place.vicinity + "<br><strong>Phone:</strong> Loading...";
+
+  // Fetch place details to get phone number
+  var request = {
+    placeId: place.place_id,
+    fields: ['formatted_phone_number']
+  };
+
+  var service = new google.maps.places.PlacesService(map);
+  service.getDetails(request, function(placeDetails, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      var phoneNumber = placeDetails.formatted_phone_number ? placeDetails.formatted_phone_number : "Not available";
+      cell1.innerHTML = "<strong>Name:</strong> " + place.name + "<br><strong>Address:</strong> " + place.vicinity + "<br><strong>Phone:</strong> " + phoneNumber;
     } else {
-        let photoUrl = 'https://via.placeholder.com/150';
-        let cell2 = row.insertCell(1);
-        cell2.innerHTML = `<img width="300" height="300" src="${photoUrl}"/>`;
-      }
+      cell1.innerHTML = "<strong>Name:</strong> " + place.name + "<br><strong>Address:</strong> " + place.vicinity + "<br><strong>Phone:</strong> Not available";
     }
+  });
+
+  if (place.photos) {
+    let photoUrl = place.photos[0].getUrl();
+    var cell2 = row.insertCell(1);
+    cell2.innerHTML = `<img width="300" height="300" src="${photoUrl}"/>`;
+  } else {
+    let photoUrl = 'https://via.placeholder.com/150';
+    var cell2 = row.insertCell(1);
+    cell2.innerHTML = `<img width="300" height="300" src="${photoUrl}"/>`;
+  }
+}
+
+  
