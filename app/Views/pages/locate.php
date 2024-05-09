@@ -12,6 +12,7 @@
       color: #fff; /* Adding color for better readability */
     }
   </style>
+  <!-- End CSS -->
 </head>
 <body>
 <main id="main">
