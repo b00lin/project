@@ -34,10 +34,7 @@
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewsModal">
                     Add News
-                </button>
-                <button type="button" class="btn btn-danger">
-                    Delete News
-                </button>               
+                </button>      
 
                 <div class="row">
                     <?php if (!empty($news) && is_array($news)) : ?>
@@ -49,6 +46,11 @@
                                         <?= esc($news_item['body']) ?>
                                     </div>
                                     <a href="/news/<?= esc($news_item['slug'], 'url') ?>" class="btn btn-primary">Read More</a>
+                                    <form action="/news/delete" method="post">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="news_id" value="<?= esc($news_item['id']) ?>">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         <?php endforeach ?>
@@ -72,59 +74,6 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
-
-    <!-- Placing JS here just to make sure. -->
-    <script>
-    $(document).ready(function(){
-        $('#addNewsForm').submit(function(e){
-            e.preventDefault(); // Prevent form submission
-
-            // Serialize form data
-            var formData = $(this).serialize();
-
-            // Include CSRF token
-            formData += '&<?= csrf_token() ?>=<?= csrf_hash() ?>';
-
-            // Send AJAX request
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost/news/new', // Assuming the URL is correct
-                data: formData,
-                success: function(response){
-                    // Handle success response
-                    console.log(response);
-                    // Reload page or update news section as needed
-                    location.reload(); // For example, reload the page
-                },
-                error: function(xhr, status, error){
-                    // Handle error response
-                    console.error(xhr.responseText);
-                    alert('Error occurred while adding news. Please try again later.');
-                }
-            });
-        });
-    });
-
-    $(document).ready(function(){
-            $('#deleteBtn').click(function(){
-                var articleID = $(this).data('article-id');
-                $.ajax({
-                    type: 'POST',
-                    url: 'delete_article.php',
-                    data: {id: articleID},
-                    success: function(response){
-                        // Handle success response
-                        alert('Article deleted successfully');
-                    },
-                    error: function(xhr, status, error){
-                        // Handle error response
-                        alert('Error deleting article');
-                    }
-                });
-            });
-        });
-    </script>
-
 
     <!-- Add News Modal -->
     <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
