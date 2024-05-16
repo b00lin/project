@@ -230,5 +230,3 @@ function createMarker(place) {
     cell2.innerHTML = `<img width="300" height="300" src="${photoUrl}"/>`;
   }
 }
-
-  
