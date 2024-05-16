@@ -28,7 +28,7 @@
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
               <li><a class="nav-link scrollto active" href="/">Home</a></li>
-              <li><a class="nav-link scrollto" href="/">Why LSH?</a></li>
+              <li><a class="nav-link scrollto" href="#services">Why LSH?</a></li>
               <li><a class="nav-link scrollto" href="news">Articles</a></li>
               <li><a class="nav-link scrollto" href="locate">Find a Lawyer/Solicitor!</a></li>
             </ul>
