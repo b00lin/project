@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\NewsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Config\Services;
 
 class News extends BaseController
 {
@@ -18,7 +19,7 @@ class News extends BaseController
             'title' => 'News archive',
         ];
 
-        return view('templates/header', $data)
+        return view('templates/header_news.php', $data)
         . view('news/index')
         . view('templates/footer');
         }
@@ -44,6 +45,11 @@ class News extends BaseController
         helper('form');
 
         return view('news/create', ['title' => 'Create a news item']);
+    }
+
+    public function success()
+    {
+         return view('news/success');
     }
 
     public function create()
@@ -72,9 +78,19 @@ class News extends BaseController
             'body'  => $post['body'],
         ]);
         
-        // Return success response
-        return $this->response->setJSON(['status' => 'success']);
+       // Return success response
+       return view('templates/header_success.php')
+        . view('news/success');
     }
 
+    public function delete()
+    {
+        $news_id = $this->request->getPost('news_id');
+        $newsModel = new NewsModel();
+        $newsModel->delete($news_id);
+        
+        // Redirect back to the news page without index.php
+        return redirect()->to(site_url('/news'));
+    }
     
 }
